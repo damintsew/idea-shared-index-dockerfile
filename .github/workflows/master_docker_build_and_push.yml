@@ -37,8 +37,8 @@ jobs:
           echo Start 
           while read p; do 
             echo "Build imamge for versiont ${p}"
-            docker build . --build-arg INTELLIJ_VERSION=ideaIU-${p} --file Dockerfile --tag damintsew/${p}
+            docker build . --build-arg INTELLIJ_VERSION=ideaIU-${p} --file Dockerfile --tag damintsew/indexer-${p}
             
-            echo "Push imamge for versiont ${p}"
-            docker push damintsew/${p}
+            echo "Push image for versiont indexer-${p}"
+            docker push damintsew/indexer-${p}
           done < "$filename" 
