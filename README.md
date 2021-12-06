@@ -1,4 +1,7 @@
 # idea-shared-index-dockerfile
+
+[![Build Docker images for Intellij Idea ultimate](https://github.com/damintsew/idea-shared-index-dockerfile/actions/workflows/master_docker_build_and_push.yml/badge.svg?branch=master)](https://github.com/damintsew/idea-shared-index-dockerfile/actions/workflows/master_docker_build_and_push.yml)
+
 The repository contains Dockerfile for building Intellij Idea images that will be used for generating **project** shared indexes 
 by `dump-shared-index project` command.
 
