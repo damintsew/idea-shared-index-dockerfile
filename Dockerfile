@@ -1,6 +1,6 @@
 FROM openkbs/jdk-mvn-py3
 
-ARG INTELLIJ_VERSION
+
 
 ENV COMMIT_ID=''
 ENV PROJECT_ID=''
@@ -19,6 +19,7 @@ RUN mkdir -p /etc/idea && \
     mkdir ${SHARED_INDEX_BASE}/output && \
     mkdir ${SHARED_INDEX_BASE}/temp \
 
+ARG INTELLIJ_VERSION
 ARG INTELLIJ_IDE_TAR=${INTELLIJ_VERSION}.tar.gz
 
 RUN wget https://download-cf.jetbrains.com/idea/${INTELLIJ_IDE_TAR} -nv && \
