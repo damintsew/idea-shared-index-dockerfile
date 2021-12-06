@@ -35,5 +35,5 @@ jobs:
           filename='supported_versions.properties' 
           echo Start 
           while read p; do 
-            docker build . --build-arg INTELLIJ_VERSION=${p} --file Dockerfile --tag damintsew/tt-${p}
+            docker build . --build-arg INTELLIJ_VERSION=ideaIU-${p} --file Dockerfile --tag damintsew/${p}
           done < "$filename" 
