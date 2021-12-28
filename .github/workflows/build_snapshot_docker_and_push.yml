@@ -33,12 +33,4 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build Docker images for all Intellij Idea Ultimate versions
         run: |
-          filename='supported_versions.properties' 
-          echo Start 
-          while read p; do 
-            echo "Build imamge for versiont ${p}"
-            docker build . --build-arg INTELLIJ_VERSION=ideaIU-${p} --file Dockerfile --tag damintsew/indexer-${p}-snapshot
-            
-            echo "Push image for versiont indexer-${p}-snapshot"
-            docker push damintsew/indexer-${p}-snapshot
-          done < "$filename" 
+          build/build_ultimate_idea.sh
