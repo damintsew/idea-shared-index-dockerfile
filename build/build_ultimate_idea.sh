@@ -1,5 +1,5 @@
 
-filename='../supported_versions.properties'
+filename='./supported_versions.properties'
 echo "Start"
 
 if [ -z "${IS_RELEASE}" ]; then
