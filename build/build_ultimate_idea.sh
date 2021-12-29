@@ -2,7 +2,8 @@
 filename='./supported_versions.properties'
 echo "Start"
 
-if [ -z "${IS_RELEASE}" ]; then
+#Checking if need to build release dependency
+if [ -z "$1" ]; then
     SNAPSHOT_SUFFIX='-snapshot'
 else
     SNAPSHOT_SUFFIX=""
