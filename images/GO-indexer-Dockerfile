@@ -1,7 +1,7 @@
 FROM openkbs/jdk-mvn-py3
 
 ARG INTELLIJ_VERSION
-ARG INTELLIJ_IDE_TAR=${INTELLIJ_VERSION}.tar.gz
+ARG INTELLIJ_IDE_TAR=goland-${INTELLIJ_VERSION}.tar.gz
 
 ENV COMMIT_ID=''
 ENV PROJECT_ID=''
@@ -21,7 +21,7 @@ RUN mkdir -p /etc/idea && \
     mkdir ${SHARED_INDEX_BASE}/temp
 
 #    https://download.jetbrains.com/go/goland-2021.3.2.tar.gz
-RUN wget https://download.jetbrains.com/go/goland-${INTELLIJ_IDE_TAR} -nv && \
+RUN wget https://download.jetbrains.com/go/${INTELLIJ_IDE_TAR} -nv && \
     tar xzf ${INTELLIJ_IDE_TAR} && \
     tar tzf ${INTELLIJ_IDE_TAR} | head -1 | sed -e 's/\/.*//' | xargs -I{} ln -s {} idea && \
     rm ${INTELLIJ_IDE_TAR} && \
