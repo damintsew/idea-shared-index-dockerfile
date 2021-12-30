@@ -32,12 +32,5 @@ jobs:
 
       - name: Goland. Build Docker images for all Intellij Idea Ultimate versions
         run: |
-          filename='goland_versions.properties' 
-          echo Start 
-          while read p; do 
-            echo "Build imamge for versiont ${p}"
-            docker build . --build-arg INTELLIJ_VERSION=goland-${p} --file Dockerfile --tag damintsew/goland-indexer-${p}-snapshot
-            
-            echo "Push image for versiont goland-indexer-${p}-snapshot"
-            docker push damintsew/goland-indexer-${p}-snapshot
-          done < "$filename" 
+          chmod +x ./build/build_golang_indexer.sh
+          ./build/build_golang_indexer.sh
