@@ -32,6 +32,7 @@ Currently, there are several docker images for different Intellij Idea versions:
 
 | Intellij Idea Version                                                            |
 |:---------------------------------------------------------------------------------|
+| [2021.3.1](https://hub.docker.com/repository/docker/damintsew/indexer-2021.3.1]) |
 | [2021.3](https://hub.docker.com/repository/docker/damintsew/indexer-2021.3])     |
 | [2021.2.3](https://hub.docker.com/repository/docker/damintsew/indexer-2021.2.3]) |
 | [2021.2.2](https://hub.docker.com/repository/docker/damintsew/indexer-2021.2.2]) |
