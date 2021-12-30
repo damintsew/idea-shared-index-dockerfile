@@ -33,3 +33,4 @@ jobs:
         run: |
           chmod +x ./build/build_ultimate_idea.sh
           ./build/build_ultimate_idea.sh RELEASE
+
