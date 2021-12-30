@@ -1,5 +1,5 @@
 
-filename='./supported_versions.properties'
+filename='./goland_versions.properties'
 echo "Start"
 
 #Checking if need to build release dependency
