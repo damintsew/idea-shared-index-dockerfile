@@ -32,6 +32,10 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Build Docker images for all Intellij Idea Ultimate versions
+      - uses: satackey/action-docker-layer-caching@v0.0.11
+        # Ignore the failure of a step and avoid terminating the job.
+        continue-on-error: true
+
         run: |
           pwd
           chmod +x ./build/build_ultimate_idea.sh
