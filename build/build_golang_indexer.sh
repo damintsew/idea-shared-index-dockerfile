@@ -11,9 +11,9 @@ fi
 
 while read VERSION_INDEX; do
 
-  IMAGE_NAME=damintsew/indexer-${VERSION_INDEX}${SNAPSHOT_SUFFIX}
+  IMAGE_NAME=damintsew/go-indexer-${VERSION_INDEX}${SNAPSHOT_SUFFIX}
   echo "Build image for version $IMAGE_NAME"
-  docker build . --build-arg INTELLIJ_VERSION=ideaIU-"${VERSION_INDEX}" --file images/GO-indexer-Dockerfile --tag "${IMAGE_NAME}"
+  docker build . --build-arg INTELLIJ_VERSION="${VERSION_INDEX}" --file images/GO-indexer-Dockerfile --tag "${IMAGE_NAME}"
 
   echo "Push image for version $IMAGE_NAME"
   docker push "$IMAGE_NAME"
