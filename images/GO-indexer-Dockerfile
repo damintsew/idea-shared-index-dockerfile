@@ -32,7 +32,7 @@ RUN wget https://download.jetbrains.com/go/${INTELLIJ_IDE_TAR} -nv && \
     chmod -R 777 ${SHARED_INDEX_BASE} && \
     chmod -R 777 /etc/idea
 
-CMD /opt/idea/bin/idea.sh dump-shared-index project \
+CMD /opt/idea/bin/goland.sh dump-shared-index project \
     --project-dir=${IDEA_PROJECT_DIR} \
     --project-id=${PROJECT_ID} \
     --commit-id=${COMMIT_ID} \
