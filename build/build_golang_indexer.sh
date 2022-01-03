@@ -13,12 +13,13 @@ while read VERSION_INDEX; do
 
   IMAGE_NAME=damintsew/go-indexer-${VERSION_INDEX}${SNAPSHOT_SUFFIX}
   echo "Build image for version $IMAGE_NAME"
-  docker buildx build --build-arg INTELLIJ_VERSION="${VERSION_INDEX}" --file images/GO-indexer-Dockerfile  \
-    --push \
-    --tag "${IMAGE_NAME}" \
-    --platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/arm64 .
+  docker build --build-arg INTELLIJ_VERSION="${VERSION_INDEX}" --file images/GO-indexer-Dockerfile  \
+ --tag "${IMAGE_NAME}" \
+     .
+#    \
+#    --platform linux/arm64,linux/amd64 .
 
   echo "Push image for version $IMAGE_NAME"
-#  docker push "$IMAGE_NAME"
+  docker push "$IMAGE_NAME"
 
 done < "$filename"

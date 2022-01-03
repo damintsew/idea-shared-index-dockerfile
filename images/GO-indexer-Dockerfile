@@ -20,7 +20,6 @@ RUN mkdir -p /etc/idea && \
     mkdir ${SHARED_INDEX_BASE}/output && \
     mkdir ${SHARED_INDEX_BASE}/temp
 
-#    https://download.jetbrains.com/go/goland-2021.3.2.tar.gz
 RUN wget https://download.jetbrains.com/go/${INTELLIJ_IDE_TAR} -nv && \
     tar xzf ${INTELLIJ_IDE_TAR} && \
     tar tzf ${INTELLIJ_IDE_TAR} | head -1 | sed -e 's/\/.*//' | xargs -I{} ln -s {} idea && \
