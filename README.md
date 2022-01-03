@@ -30,7 +30,7 @@ docker build . --build-arg INTELLIJ_VERSION=${INTELLIJ_VERSION} -t damintsew/ind
 ```
 Currently, there are several docker images for different Intellij Idea versions:
 
-| Intellij Idea Version                                                            | Goland Idea verssion                                                                |
+| Intellij Idea Version. Image tag: damintsew/indexer-${version}                   | Goland Idea version. Image tag: damintsew/go-indexer-${version}                     |
 |:---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
 |                                                                                  | [2021.3.2](https://hub.docker.com/repository/docker/damintsew/go-indexer-2021.3.2]) |
 | [2021.3.1](https://hub.docker.com/repository/docker/damintsew/indexer-2021.3.1]) | [2021.3.1](https://hub.docker.com/repository/docker/damintsew/go-indexer-2021.3.1]) |
