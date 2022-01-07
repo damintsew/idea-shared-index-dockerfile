@@ -53,4 +53,4 @@ jobs:
       - name: Build Docker images for all Intellij Idea Ultimate versions
         run: |
           chmod +x ./build/build_ultimate_idea.sh
-          ./build/build_ultimate_idea.sh  GHCR
+          ./build/build_ultimate_idea.sh -p ghcr.io
