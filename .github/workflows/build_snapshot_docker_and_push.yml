@@ -45,7 +45,7 @@ jobs:
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.GHCI_TOKEN }}
 
       # Runs a set of commands using the runners shell
       - name: Build Docker images for all Intellij Idea Ultimate versions
