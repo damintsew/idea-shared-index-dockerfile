@@ -17,7 +17,7 @@ do
    case "$opt" in
       v ) SNAPSHOT_SUFFIX="$OPTARG" ;;
       p ) DOCKER_PROVIDER="$OPTARG" ;;
-      ? ) echo "help" # helpFunction ;; # Print helpFunction in case parameter is non-existent
+      ? ) echo "help" # https://unix.stackexchange.com/questions/31414/how-can-i-pass-a-command-line-argument-into-a-shell-script
    esac
 done
 
