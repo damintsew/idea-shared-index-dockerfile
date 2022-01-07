@@ -13,9 +13,11 @@ while read VERSION_INDEX; do
 
   IMAGE_NAME=damintsew/indexer-${VERSION_INDEX}${SNAPSHOT_SUFFIX}
   echo "Build image for version $IMAGE_NAME"
-  docker build . --build-arg INTELLIJ_VERSION=ideaIU-"${VERSION_INDEX}" --file Dockerfile --tag "${IMAGE_NAME}"
+  docker build . --build-arg INTELLIJ_VERSION=ideaIU-"${VERSION_INDEX}" --file Dockerfile \
+   --tag "${IMAGE_NAME}" --tag gtcr.io/"${IMAGE_NAME}"
 
   echo "Push image for version $IMAGE_NAME"
   docker push "$IMAGE_NAME"
+  docker push gtcr.io/"$IMAGE_NAME"
 
 done < "$filename"
