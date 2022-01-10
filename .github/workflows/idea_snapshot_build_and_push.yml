@@ -39,8 +39,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build Docker images for all Intellij Idea Ultimate versions
         run: |
-          chmod +x ./build/build_ultimate_idea.sh
-          ./build/build_ultimate_idea.sh -p docker.io
+          chmod +x ./build/build_and_push_docker_container.sh
+          ./build/build_and_push_docker_container.sh -p docker.io -d idea
 
 
       - name: Login to GHCR Hub
@@ -53,5 +53,5 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Build Docker images for all Intellij Idea Ultimate versions
         run: |
-          chmod +x ./build/build_ultimate_idea.sh
-          ./build/build_ultimate_idea.sh -p ghcr.io
+          chmod +x ./build/build_and_push_docker_container.sh
+          ./build/build_and_push_docker_container.sh -p ghcr.io -d idea
