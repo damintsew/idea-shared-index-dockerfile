@@ -18,7 +18,7 @@ Where:
 
 # How to use
 
-1. Download image `docker pull damintsew/indexer-2021.3`.
+1. Download image `docker pull damintsew/idea-indexer-2021.3`.
 2. Run image `docker run -v YOUR_PROJECT_DIR:/var/project -v GENERATED_OUTPUD_DIR:/shared-index/output 
 -e COMMIT_ID=<full commit hash> -e PROJECT_ID=<project name>` 
 
@@ -27,15 +27,15 @@ For example: //todo
 # How to build
 ```
 INTELLIJ_VERSION=<version>
-docker build . --build-arg INTELLIJ_VERSION=${INTELLIJ_VERSION} -t damintsew/indexer-${INTELLIJ_VERSION}
+docker build . --build-arg INTELLIJ_VERSION=${INTELLIJ_VERSION} -t damintsew/idea-indexer-${INTELLIJ_VERSION}
 ```
 Currently, there are several docker images for different Intellij Idea versions:
 
-| Intellij Idea Version. Image tag: damintsew/indexer-${version}                   | Goland Idea version. Image tag: damintsew/go-indexer-${version}                     |
+| Intellij Idea Version. Image tag: damintsew/idea-indexer-${version}                   | Goland Idea version. Image tag: damintsew/goland-indexer-${version}                     |
 |:---------------------------------------------------------------------------------|-------------------------------------------------------------------------------------|
-|                                                                                  | [2021.3.2](https://hub.docker.com/repository/docker/damintsew/go-indexer-2021.3.2]) |
-| [2021.3.1](https://hub.docker.com/repository/docker/damintsew/indexer-2021.3.1]) | [2021.3.1](https://hub.docker.com/repository/docker/damintsew/go-indexer-2021.3.1]) |
-| [2021.3](https://hub.docker.com/repository/docker/damintsew/indexer-2021.3])     | [2021.2.3](https://hub.docker.com/repository/docker/damintsew/go-indexer-2021.2.3]) |
-| [2021.2.3](https://hub.docker.com/repository/docker/damintsew/indexer-2021.2.3]) | [2021.2.2](https://hub.docker.com/repository/docker/damintsew/go-indexer-2021.2.2]) |
-| [2021.2.2](https://hub.docker.com/repository/docker/damintsew/indexer-2021.2.2]) | [2021.1.1](https://hub.docker.com/repository/docker/damintsew/go-indexer-2021.2.1]) |
-| [2021.2.1](https://hub.docker.com/repository/docker/damintsew/indexer-2021.2.1]) |                                                                                     |
+|                                                                                  | [2021.3.2](https://hub.docker.com/repository/docker/damintsew/goland-indexer-2021.3.2]) |
+| [2021.3.1](https://hub.docker.com/repository/docker/damintsew/idea-indexer-2021.3.1]) | [2021.3.1](https://hub.docker.com/repository/docker/damintsew/goland-indexer-2021.3.1]) |
+| [2021.3](https://hub.docker.com/repository/docker/damintsew/idea-indexer-2021.3])     | [2021.2.3](https://hub.docker.com/repository/docker/damintsew/goland-indexer-2021.2.3]) |
+| [2021.2.3](https://hub.docker.com/repository/docker/damintsew/idea-indexer-2021.2.3]) | [2021.2.2](https://hub.docker.com/repository/docker/damintsew/goland-indexer-2021.2.2]) |
+| [2021.2.2](https://hub.docker.com/repository/docker/damintsew/idea-indexer-2021.2.2]) | [2021.1.1](https://hub.docker.com/repository/docker/damintsew/goland-indexer-2021.2.1]) |
+| [2021.2.1](https://hub.docker.com/repository/docker/damintsew/idea-indexer-2021.2.1]) |                                                                                     |
