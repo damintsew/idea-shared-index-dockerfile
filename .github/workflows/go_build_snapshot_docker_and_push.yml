@@ -36,5 +36,19 @@ jobs:
 
       - name: Goland. Build Docker images for all Intellij Idea Ultimate versions
         run: |
-          chmod +x ./build/build_golang_indexer.sh
-          ./build/build_golang_indexer.sh
+          chmod +x ./build/build_and_push_docker_container.sh
+          ./build/build_and_push_docker_container.sh -p docker.io -d goland
+
+
+      - name: Login to GHCR Hub
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Runs a set of commands using the runners shell
+      - name: Build Docker images for all Goland versions and push to ghcr.io
+        run: |
+          chmod +x ./build/build_and_push_docker_container.sh
+          ./build/build_and_push_docker_container.sh -p ghcr.io -d goland          
