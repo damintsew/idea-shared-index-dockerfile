@@ -1,11 +1,19 @@
 # This is a basic workflow to help you get started with Actions
-name: Build Released Docker images for Idea Ultimate
+name: Build Snapshot Docker images for Idea Ultimate
+
+#todo possible improvement https://github.com/docker/build-push-action/blob/master/docs/advanced/share-image-jobs.md
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [ develop ]
+    paths-ignore:
+      - 'README.md'
+  pull_request:
+    branches: [ develop ]
+    paths-ignore:
+      - 'README.md'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -32,5 +40,18 @@ jobs:
       - name: Build Docker images for all Intellij Idea Ultimate versions
         run: |
           chmod +x ./build/build_ultimate_idea.sh
-          ./build/build_ultimate_idea.sh RELEASE
+          ./build/build_ultimate_idea.sh -p docker.io
 
+
+      - name: Login to GHCR Hub
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      # Runs a set of commands using the runners shell
+      - name: Build Docker images for all Intellij Idea Ultimate versions
+        run: |
+          chmod +x ./build/build_ultimate_idea.sh
+          ./build/build_ultimate_idea.sh -p ghcr.io
