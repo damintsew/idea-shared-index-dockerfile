@@ -1,4 +1,5 @@
 FROM openkbs/jdk-mvn-py3
+#FROM openjdk:17-jdk
 
 ARG INTELLIJ_VERSION
 ARG INTELLIJ_IDE_TAR=ideaIU-${INTELLIJ_VERSION}.tar.gz
@@ -6,7 +7,7 @@ ARG INTELLIJ_IDE_TAR=ideaIU-${INTELLIJ_VERSION}.tar.gz
 ENV COMMIT_ID=''
 ENV PROJECT_ID=''
 ENV IDEA_PROPERTIES=/opt/idea/bin/idea.properties
-ENV IDEA_PROJECT_DIR="/var/project"
+ENV IDEA_PROJECT_DIR="/builds/damintsew1/shared-index-plugin-test/"
 ENV SHARED_INDEX_BASE="/shared-index"
 
 USER root
