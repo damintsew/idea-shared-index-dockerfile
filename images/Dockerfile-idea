@@ -7,11 +7,23 @@ ARG INTELLIJ_IDE_TAR=ideaIU-${INTELLIJ_VERSION}.tar.gz
 ENV COMMIT_ID=''
 ENV PROJECT_ID=''
 ENV IDEA_PROPERTIES=/opt/idea/bin/idea.properties
+#ENV IDEA_PROJECT_DIR="/var/project"
 ENV IDEA_PROJECT_DIR="/builds/damintsew1/shared-index-plugin-test/"
 ENV SHARED_INDEX_BASE="/shared-index"
+#ENV CDN_LAYOUT_TOOL_VERSION=0.8.65
 
 USER root
 WORKDIR /opt
+
+RUN apt-get update && apt-get install -y \
+    zip \
+     && rm -rf /var/lib/apt/lists/*
+
+# Install cdn-layout-tool
+#RUN wget https://packages.jetbrains.team/maven/p/ij/intellij-shared-indexes-public/com/jetbrains/intellij/indexing/shared/cdn-layout-tool/${CDN_LAYOUT_TOOL_VERSION}/cdn-layout-tool-${CDN_LAYOUT_TOOL_VERSION}.zip -O cdn-layout-tool.zip && \
+#    unzip cdn-layout-tool.zip && \
+#    rm cdn-layout-tool.zip && \
+#    mv cdn-layout-tool-${CDN_LAYOUT_TOOL_VERSION} cdn-layout-tool
 
 RUN mkdir -p /etc/idea && \
     mkdir -p /etc/idea/config && \
@@ -32,9 +44,7 @@ RUN wget https://download-cf.jetbrains.com/idea/${INTELLIJ_IDE_TAR} -nv && \
     chmod -R 777 ${SHARED_INDEX_BASE} && \
     chmod -R 777 /etc/idea
 
-CMD /opt/idea/bin/idea.sh dump-shared-index project \
-    --project-dir=${IDEA_PROJECT_DIR} \
-    --project-id=${PROJECT_ID} \
-    --commit-id=${COMMIT_ID} \
-    --tmp=${SHARED_INDEX_BASE}/temp \
-    --output=${SHARED_INDEX_BASE}/output
+COPY run_shared_index.sh .
+RUN chmod +x run_shared_index.sh
+
+CMD ./run_shared_index.sh
