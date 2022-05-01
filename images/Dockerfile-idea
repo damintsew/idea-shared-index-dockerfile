@@ -1,16 +1,10 @@
 FROM openkbs/jdk-mvn-py3
-#FROM openjdk:17-jdk
-
-ARG INTELLIJ_VERSION
-ARG INTELLIJ_IDE_TAR=ideaIU-${INTELLIJ_VERSION}.tar.gz
 
 ENV COMMIT_ID=''
 ENV PROJECT_ID=''
 ENV IDEA_PROPERTIES=/opt/idea/bin/idea.properties
 ENV PROJECT_DIR="/var/project"
-#ENV IDEA_PROJECT_DIR="/builds/damintsew1/shared-index-plugin-test/"
 ENV SHARED_INDEX_BASE="/shared-index"
-#ENV CDN_LAYOUT_TOOL_VERSION=0.8.65
 
 USER root
 WORKDIR /opt
@@ -19,12 +13,6 @@ RUN apt-get update && apt-get install -y \
     zip \
      && rm -rf /var/lib/apt/lists/*
 
-# Install cdn-layout-tool
-#RUN wget https://packages.jetbrains.team/maven/p/ij/intellij-shared-indexes-public/com/jetbrains/intellij/indexing/shared/cdn-layout-tool/${CDN_LAYOUT_TOOL_VERSION}/cdn-layout-tool-${CDN_LAYOUT_TOOL_VERSION}.zip -O cdn-layout-tool.zip && \
-#    unzip cdn-layout-tool.zip && \
-#    rm cdn-layout-tool.zip && \
-#    mv cdn-layout-tool-${CDN_LAYOUT_TOOL_VERSION} cdn-layout-tool
-
 RUN mkdir -p /etc/idea && \
     mkdir -p /etc/idea/config && \
     mkdir -p /etc/idea/log && \
@@ -32,6 +20,9 @@ RUN mkdir -p /etc/idea && \
     mkdir ${SHARED_INDEX_BASE} && \
     mkdir ${SHARED_INDEX_BASE}/output && \
     mkdir ${SHARED_INDEX_BASE}/temp
+
+ARG INTELLIJ_VERSION
+ARG INTELLIJ_IDE_TAR=ideaIU-${INTELLIJ_VERSION}.tar.gz
 
 RUN wget https://download-cf.jetbrains.com/idea/${INTELLIJ_IDE_TAR} -nv && \
     tar xzf ${INTELLIJ_IDE_TAR} && \

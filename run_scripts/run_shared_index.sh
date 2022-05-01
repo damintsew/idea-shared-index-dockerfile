@@ -35,4 +35,9 @@ if [ ! -z "$INDEXES_CDN_URL" ]; then
        -H "accept: */*" \
        -H "Content-Type: multipart/form-data" \
        -F "file=@/opt/zipped_index.zip"
+
+    echo "Index successfully sended to server ${INDEXES_CDN_URL}"
+    echo "Removing zipped_index.zip"
+    rm /opt/zipped_index.zip
+    rm /${SHARED_INDEX_BASE}/output/*
 fi
