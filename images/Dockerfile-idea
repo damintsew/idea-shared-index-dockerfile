@@ -7,8 +7,8 @@ ARG INTELLIJ_IDE_TAR=ideaIU-${INTELLIJ_VERSION}.tar.gz
 ENV COMMIT_ID=''
 ENV PROJECT_ID=''
 ENV IDEA_PROPERTIES=/opt/idea/bin/idea.properties
-#ENV IDEA_PROJECT_DIR="/var/project"
-ENV IDEA_PROJECT_DIR="/builds/damintsew1/shared-index-plugin-test/"
+ENV PROJECT_DIR="/var/project"
+#ENV IDEA_PROJECT_DIR="/builds/damintsew1/shared-index-plugin-test/"
 ENV SHARED_INDEX_BASE="/shared-index"
 #ENV CDN_LAYOUT_TOOL_VERSION=0.8.65
 
@@ -44,7 +44,7 @@ RUN wget https://download-cf.jetbrains.com/idea/${INTELLIJ_IDE_TAR} -nv && \
     chmod -R 777 ${SHARED_INDEX_BASE} && \
     chmod -R 777 /etc/idea
 
-COPY run_shared_index.sh .
+COPY run_scripts/run_shared_index.sh .
 RUN chmod +x run_shared_index.sh
 
 CMD ./run_shared_index.sh

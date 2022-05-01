@@ -1,9 +1,18 @@
 #echo `git status`
 
-#todo add parameters validation
+echo "Start"
+
+#while getopts "c:p:" opt
+#do
+#   case "$opt" in
+#      v ) COMMIT_ID="$OPTARG" ;;
+#      p ) PROJECT_ID="$OPTARG" ;;
+#      ? ) echo "todo print help" # https://unix.stackexchange.com/questions/31414/how-can-i-pass-a-command-line-argument-into-a-shell-script
+#   esac
+#done
 
 /opt/idea/bin/idea.sh dump-shared-index project \
-    --project-dir=${IDEA_PROJECT_DIR} \
+    --project-dir=${PROJECT_DIR} \
     --project-id=${PROJECT_ID} \
     --commit-id=${COMMIT_ID} \
     --tmp=${SHARED_INDEX_BASE}/temp \
