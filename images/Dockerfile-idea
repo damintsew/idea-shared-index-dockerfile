@@ -1,16 +1,17 @@
 FROM openkbs/jdk-mvn-py3
 
-ARG INTELLIJ_VERSION
-ARG INTELLIJ_IDE_TAR=ideaIU-${INTELLIJ_VERSION}.tar.gz
-
 ENV COMMIT_ID=''
 ENV PROJECT_ID=''
 ENV IDEA_PROPERTIES=/opt/idea/bin/idea.properties
-ENV IDEA_PROJECT_DIR="/var/project"
+ENV PROJECT_DIR="/var/project"
 ENV SHARED_INDEX_BASE="/shared-index"
 
 USER root
 WORKDIR /opt
+
+RUN apt-get update && apt-get install -y \
+    zip \
+     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /etc/idea && \
     mkdir -p /etc/idea/config && \
@@ -19,6 +20,9 @@ RUN mkdir -p /etc/idea && \
     mkdir ${SHARED_INDEX_BASE} && \
     mkdir ${SHARED_INDEX_BASE}/output && \
     mkdir ${SHARED_INDEX_BASE}/temp
+
+ARG INTELLIJ_VERSION
+ARG INTELLIJ_IDE_TAR=ideaIU-${INTELLIJ_VERSION}.tar.gz
 
 RUN wget https://download-cf.jetbrains.com/idea/${INTELLIJ_IDE_TAR} -nv && \
     tar xzf ${INTELLIJ_IDE_TAR} && \
@@ -31,9 +35,7 @@ RUN wget https://download-cf.jetbrains.com/idea/${INTELLIJ_IDE_TAR} -nv && \
     chmod -R 777 ${SHARED_INDEX_BASE} && \
     chmod -R 777 /etc/idea
 
-CMD /opt/idea/bin/idea.sh dump-shared-index project \
-    --project-dir=${IDEA_PROJECT_DIR} \
-    --project-id=${PROJECT_ID} \
-    --commit-id=${COMMIT_ID} \
-    --tmp=${SHARED_INDEX_BASE}/temp \
-    --output=${SHARED_INDEX_BASE}/output
+COPY run_scripts/run_shared_index.sh .
+RUN chmod +x run_shared_index.sh
+
+CMD ./run_shared_index.sh

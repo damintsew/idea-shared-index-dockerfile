@@ -23,6 +23,8 @@ while read VERSION_INDEX; do
 
   IMAGE_NAME=${DOCKER_PROVIDER}/damintsew/indexer-${DOCKERFILE}-${VERSION_INDEX}${SNAPSHOT_SUFFIX}
   echo "Build image for version $IMAGE_NAME"
+  echo "CMD: docker build --build-arg INTELLIJ_VERSION=""${VERSION_INDEX}"" --file images/Dockerfile-${DOCKERFILE} --tag ""${IMAGE_NAME}"" ."
+
   docker build --build-arg INTELLIJ_VERSION="${VERSION_INDEX}" --file images/Dockerfile-${DOCKERFILE} \
    --tag "${IMAGE_NAME}" .
 
