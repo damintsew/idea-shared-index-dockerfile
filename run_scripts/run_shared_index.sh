@@ -11,6 +11,14 @@ echo "Start"
 #   esac
 #done
 
+
+for file in $(ls "/opt/scripts/before_execution/"| sort -r); do
+  echo "Executing file $file"
+  bash "$file" || break  # execute successfully or break
+  # Or more explicitly: if this execution fails, then stop the `for`:
+  # if ! bash "$f"; then break; fi
+done
+
 /opt/idea/bin/idea.sh dump-shared-index project \
     --project-dir=${PROJECT_DIR} \
     --project-id=${PROJECT_ID} \
@@ -18,13 +26,15 @@ echo "Start"
     --tmp=${SHARED_INDEX_BASE}/temp \
     --output=${SHARED_INDEX_BASE}/output
 
-# Format for CDN (cdn-layout-tool)
+for file in $(ls "/opt/scripts/after_execution/"| sort -r); do
+  echo "Executing file $file"
+  bash "$file" || break  # execute successfully or break
+  # Or more explicitly: if this execution fails, then stop the `for`:
+  # if ! bash "$f"; then break; fi
+done
+
+# Zip files and send to Shared-index server
 if [ ! -z "$INDEXES_CDN_URL" ]; then
-#    echo "Formatting indexes"
-#    /opt/cdn-layout-tool/bin/cdn-layout-tool \
-#        --indexes-dir=${SHARED_INDEX_BASE} \
-#        --url=${INDEXES_CDN_URL} && \
-#        mv ${SHARED_INDEX_BASE}/output ${SHARED_INDEX_BASE}/project/output
 
     # Zip files. Prepare for sending
     echo "Zipping output"
