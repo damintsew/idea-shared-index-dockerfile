@@ -1,15 +1,31 @@
 
 echo "Start"
 
+helpFunction()
+{
+   echo ""
+   echo "Usage: $0 -v -p docker.io -d idea/goland"
+   echo -e "\t-v Optional is not specified SNAPSHOT suffix will be added"
+   echo -e "\t-p Docker provider selection"
+   echo -e "\t-d Intellij idea or goland version"
+   exit 1 # Exit script after printing help
+}
+
 while getopts "v:p:d:" opt
 do
    case "$opt" in
       v ) SNAPSHOT_SUFFIX="$OPTARG" ;;
       p ) DOCKER_PROVIDER="$OPTARG" ;;
       d ) DOCKERFILE="$OPTARG" ;;
-      ? ) echo "todo print help" # https://unix.stackexchange.com/questions/31414/how-can-i-pass-a-command-line-argument-into-a-shell-script
+      ? ) helpFunction ;;
    esac
 done
+
+if [ -z "$DOCKER_PROVIDER" ] || [ -z "$DOCKERFILE" ]
+then
+   echo "Some parameters are empty";
+   helpFunction
+fi
 
 if [ -z "${SNAPSHOT_SUFFIX}" ]; then
     SNAPSHOT_SUFFIX='-snapshot'
