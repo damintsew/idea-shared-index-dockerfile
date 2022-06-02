@@ -5,6 +5,8 @@ ENV PROJECT_ID=''
 ENV IDEA_PROPERTIES=/opt/idea/bin/idea.properties
 ENV PROJECT_DIR="/var/project"
 ENV SHARED_INDEX_BASE="/shared-index"
+ENV EXECUTION_SCRIPTS_BEFORE_DIR="/opt/scripts/before_execution"
+ENV EXECUTION_SCRIPTS_AFTER_DIR="/opt/scripts/after_execution"
 
 USER root
 WORKDIR /opt
@@ -12,6 +14,10 @@ WORKDIR /opt
 RUN apt-get update && apt-get install -y \
     zip \
      && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /opt/scripts && \
+    mkdir -p /opt/scripts/before_execution && \
+    mkdir -p /opt/scripts/after_execution
 
 RUN mkdir -p /etc/idea && \
     mkdir -p /etc/idea/config && \
@@ -36,6 +42,8 @@ RUN wget https://download-cf.jetbrains.com/idea/${INTELLIJ_IDE_TAR} -nv && \
     chmod -R 777 /etc/idea
 
 COPY run_scripts/run_shared_index.sh .
-RUN chmod +x run_shared_index.sh
+COPY run_scripts/utill_scripts/* ${EXECUTION_SCRIPTS_AFTER_DIR}/
+RUN chmod +x run_shared_index.sh && \
+    chmod +x ${EXECUTION_SCRIPTS_AFTER_DIR}/*
 
-CMD ./run_shared_index.sh
+ENTRYPOINT ["bash", "+x", "./run_shared_index.sh"]
